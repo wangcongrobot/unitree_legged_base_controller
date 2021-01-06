@@ -4,25 +4,17 @@ project(unitree_legged_base_controller)
 add_compile_options(-std=c++11)
 
 find_package(catkin REQUIRED COMPONENTS
-   # controller_manager
-    roscpp
-    tf
-   
-   geometry_msgs
-
-   
-   unitree_legged_msgs
-    
+  # controller_manager
+  roscpp
+  tf
+  geometry_msgs
+  unitree_legged_msgs
 )
 
 find_package(Eigen3 REQUIRED)
 
-
-
-
 catkin_package(
-
- )
+)
 
 include_directories(
     include
@@ -31,8 +23,6 @@ include_directories(
     ${EIGEN3_INCLUDE_DIR}
     ../unitree_legged_sdk/include
     ../aliengo_sdk/include
- 
-  
 )
 
 link_directories(
@@ -53,9 +43,6 @@ add_executable(lcm_server_3_2 ../unitree_legged_sdk/examples/lcm_server.cpp)
 target_link_libraries(lcm_server_3_2 ${EXTRA_LIBS} ${catkin_LIBRARIES})
 add_dependencies(lcm_server_3_2 ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
-install(DIRECTORY launch 
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
-)
 
 ## Mark other files for installation (e.g. launch and bag files, etc.)
 install(FILES
