@@ -61,7 +61,8 @@ link_directories(
 )
 
 #string(CONCAT LEGGED_SDK_NAME libunitree_legged_sdk_$ENV{UNITREE_PLATFORM}.so)
-set(EXTRA_LIBS libunitree_legged_sdk_amd64.so libaliengo_comm.so lcm)
+#set(EXTRA_LIBS libunitree_legged_sdk_amd64.so libaliengo_comm.so lcm)
+set(EXTRA_LIBS libunitree_legged_sdk_arm64.so libaliengo_comm_arm64.so lcm)
 
 set(CMAKE_CXX_FLAGS "-O3")
 
@@ -76,8 +77,10 @@ add_dependencies(lcm_server_3_2 ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXP
 
 ## Mark other files for installation (e.g. launch and bag files, etc.)
 install(FILES
-  ../unitree_legged_sdk/lib/libunitree_legged_sdk_amd64.so
-  ../aliengo_sdk/lib/libaliengo_comm.so
+  #../unitree_legged_sdk/lib/libunitree_legged_sdk_amd64.so
+  #../aliengo_sdk/lib/libaliengo_comm.so
+  ../unitree_legged_sdk/lib/libunitree_legged_sdk_arm64.so
+  ../aliengo_sdk/lib/libaliengo_comm_arm64.so
   DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 )
 
