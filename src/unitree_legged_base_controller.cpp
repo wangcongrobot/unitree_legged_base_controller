@@ -8,8 +8,8 @@ Use of this source code is governed by the MPL-2.0 license, see LICENSE.
 #include <string>
 #include <boost/thread.hpp>
 #include <boost/thread/mutex.hpp>
-#include <unitree_legged_msgs/HighCmd.h>
-#include <unitree_legged_msgs/HighState.h>
+#include <unitree_legged_base_controller/HighCmd.h>
+#include <unitree_legged_base_controller/HighState.h>
 #include "unitree_legged_sdk/unitree_legged_sdk.h"
 #include "aliengo_sdk/aliengo_sdk.hpp"
 #include "convert.h"
@@ -17,8 +17,8 @@ Use of this source code is governed by the MPL-2.0 license, see LICENSE.
 #include <iostream>
 
 // using namespace UNITREE_LEGGED_SDK;
-unitree_legged_msgs::HighCmd SendHighROS;
-unitree_legged_msgs::HighState RecvHighROS;
+unitree_legged_base_controller::HighCmd SendHighROS;
+unitree_legged_base_controller::HighState RecvHighROS;
 
 
 template<typename TLCM>

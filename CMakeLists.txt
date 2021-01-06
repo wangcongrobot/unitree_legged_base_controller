@@ -8,13 +8,43 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   tf
   geometry_msgs
-  unitree_legged_msgs
+  #unitree_legged_msgs
+  message_generation
+  std_msgs
+  geometry_msgs
+  sensor_msgs
 )
 
 find_package(Eigen3 REQUIRED)
 
-catkin_package(
+add_message_files(
+  FILES
+  MotorCmd.msg
+  MotorState.msg
+  Cartesian.msg
+  IMU.msg
+  LED.msg
+  LowCmd.msg
+  LowState.msg
+  HighCmd.msg
+  HighState.msg
 )
+
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+  geometry_msgs
+  sensor_msgs
+)
+
+catkin_package(
+  CATKIN_DEPENDS
+  message_runtime
+  std_msgs
+  geometry_msgs
+  sensor_msgs 
+)
+
 
 include_directories(
     include
@@ -57,3 +87,9 @@ install(TARGETS  unitree_legged_base_controller lcm_server_3_2
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
+# Mark topic names header files for installation
+install(
+  DIRECTORY include/${PROJECT_NAME}/
+  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+  FILES_MATCHING PATTERN "*.h"
+)

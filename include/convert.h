@@ -7,13 +7,13 @@ Use of this source code is governed by the MPL-2.0 license, see LICENSE.
 #define _CONVERT_H_
 
 #include "unitree_legged_sdk/unitree_legged_sdk.h"
-#include <unitree_legged_msgs/LowCmd.h>
-#include <unitree_legged_msgs/LowState.h>
-#include <unitree_legged_msgs/HighCmd.h>
-#include <unitree_legged_msgs/HighState.h>
-#include <unitree_legged_msgs/MotorCmd.h>
-#include <unitree_legged_msgs/MotorState.h>
-#include <unitree_legged_msgs/IMU.h>
+#include <unitree_legged_base_controller/LowCmd.h>
+#include <unitree_legged_base_controller/LowState.h>
+#include <unitree_legged_base_controller/HighCmd.h>
+#include <unitree_legged_base_controller/HighState.h>
+#include <unitree_legged_base_controller/MotorCmd.h>
+#include <unitree_legged_base_controller/MotorState.h>
+#include <unitree_legged_base_controller/IMU.h>
 #include "aliengo_sdk/aliengo_sdk.hpp"
 
 enum firmworkVersion{
@@ -21,9 +21,9 @@ enum firmworkVersion{
     V3_2
 };
 
-unitree_legged_msgs::IMU ToRos(UNITREE_LEGGED_SDK::IMU& lcm)
+unitree_legged_base_controller::IMU ToRos(UNITREE_LEGGED_SDK::IMU& lcm)
 {
-    unitree_legged_msgs::IMU ros;
+    unitree_legged_base_controller::IMU ros;
     ros.quaternion[0] = lcm.quaternion[0];
     ros.quaternion[1] = lcm.quaternion[1];
     ros.quaternion[2] = lcm.quaternion[2];
@@ -41,8 +41,8 @@ unitree_legged_msgs::IMU ToRos(UNITREE_LEGGED_SDK::IMU& lcm)
     return ros;
 }
 
-unitree_legged_msgs::IMU ToRos(aliengo::IMU& lcm){
-    unitree_legged_msgs::IMU ros;
+unitree_legged_base_controller::IMU ToRos(aliengo::IMU& lcm){
+    unitree_legged_base_controller::IMU ros;
     ros.quaternion[0] = lcm.quaternion[0];
     ros.quaternion[1] = lcm.quaternion[1];
     ros.quaternion[2] = lcm.quaternion[2];
@@ -60,9 +60,9 @@ unitree_legged_msgs::IMU ToRos(aliengo::IMU& lcm){
     return ros;
 }
 
-unitree_legged_msgs::MotorState ToRos(UNITREE_LEGGED_SDK::MotorState& lcm)
+unitree_legged_base_controller::MotorState ToRos(UNITREE_LEGGED_SDK::MotorState& lcm)
 {
-    unitree_legged_msgs::MotorState ros;
+    unitree_legged_base_controller::MotorState ros;
     ros.mode = lcm.mode;
     ros.q = lcm.q;
     ros.dq = lcm.dq;
@@ -77,8 +77,8 @@ unitree_legged_msgs::MotorState ToRos(UNITREE_LEGGED_SDK::MotorState& lcm)
     return ros;
 }
 
-unitree_legged_msgs::MotorState ToRos(aliengo::MotorState& lcm){
-    unitree_legged_msgs::MotorState ros;
+unitree_legged_base_controller::MotorState ToRos(aliengo::MotorState& lcm){
+    unitree_legged_base_controller::MotorState ros;
     ros.mode = lcm.mode;
     ros.q = lcm.position;
     ros.dq = lcm.velocity;
@@ -94,7 +94,7 @@ unitree_legged_msgs::MotorState ToRos(aliengo::MotorState& lcm){
     return ros;
 }
 
-UNITREE_LEGGED_SDK::MotorCmd ToLcm(unitree_legged_msgs::MotorCmd& ros, UNITREE_LEGGED_SDK::MotorCmd lcmType)
+UNITREE_LEGGED_SDK::MotorCmd ToLcm(unitree_legged_base_controller::MotorCmd& ros, UNITREE_LEGGED_SDK::MotorCmd lcmType)
 {
     UNITREE_LEGGED_SDK::MotorCmd lcm;
     lcm.mode = ros.mode;
@@ -109,7 +109,7 @@ UNITREE_LEGGED_SDK::MotorCmd ToLcm(unitree_legged_msgs::MotorCmd& ros, UNITREE_L
     return lcm;
 }
 
-aliengo::MotorCmd ToLcm(unitree_legged_msgs::MotorCmd& ros, aliengo::MotorCmd lcmType){
+aliengo::MotorCmd ToLcm(unitree_legged_base_controller::MotorCmd& ros, aliengo::MotorCmd lcmType){
     aliengo::MotorCmd lcm;
     lcm.mode = ros.mode;
     lcm.position = ros.q;
@@ -120,9 +120,9 @@ aliengo::MotorCmd ToLcm(unitree_legged_msgs::MotorCmd& ros, aliengo::MotorCmd lc
     return lcm;
 }
 
-unitree_legged_msgs::LowState ToRos(UNITREE_LEGGED_SDK::LowState& lcm)
+unitree_legged_base_controller::LowState ToRos(UNITREE_LEGGED_SDK::LowState& lcm)
 {
-    unitree_legged_msgs::LowState ros;
+    unitree_legged_base_controller::LowState ros;
     ros.levelFlag = lcm.levelFlag;
     ros.commVersion = lcm.commVersion;
     ros.robotID = lcm.robotID;
@@ -145,8 +145,8 @@ unitree_legged_msgs::LowState ToRos(UNITREE_LEGGED_SDK::LowState& lcm)
     return ros;
 }
 
-unitree_legged_msgs::LowState ToRos(aliengo::LowState& lcm){
-    unitree_legged_msgs::LowState ros;
+unitree_legged_base_controller::LowState ToRos(aliengo::LowState& lcm){
+    unitree_legged_base_controller::LowState ros;
     ros.levelFlag = lcm.levelFlag;
     ros.commVersion = 0;
     ros.robotID = 0;
@@ -169,7 +169,7 @@ unitree_legged_msgs::LowState ToRos(aliengo::LowState& lcm){
     return ros;
 }
 
-UNITREE_LEGGED_SDK::LowCmd ToLcm(unitree_legged_msgs::LowCmd& ros, UNITREE_LEGGED_SDK::LowCmd lcmType)
+UNITREE_LEGGED_SDK::LowCmd ToLcm(unitree_legged_base_controller::LowCmd& ros, UNITREE_LEGGED_SDK::LowCmd lcmType)
 {
     UNITREE_LEGGED_SDK::LowCmd lcm;
     lcm.levelFlag = ros.levelFlag;
@@ -193,7 +193,7 @@ UNITREE_LEGGED_SDK::LowCmd ToLcm(unitree_legged_msgs::LowCmd& ros, UNITREE_LEGGE
     return lcm;
 }
 
-aliengo::LowCmd ToLcm(unitree_legged_msgs::LowCmd& ros, aliengo::LowCmd lcmType){
+aliengo::LowCmd ToLcm(unitree_legged_base_controller::LowCmd& ros, aliengo::LowCmd lcmType){
     aliengo::LowCmd lcm;
     lcm.levelFlag = ros.levelFlag;
     for(int i = 0; i < 20; i++){
@@ -211,9 +211,9 @@ aliengo::LowCmd ToLcm(unitree_legged_msgs::LowCmd& ros, aliengo::LowCmd lcmType)
     return lcm;
 }
 
-unitree_legged_msgs::HighState ToRos(UNITREE_LEGGED_SDK::HighState& lcm)
+unitree_legged_base_controller::HighState ToRos(UNITREE_LEGGED_SDK::HighState& lcm)
 {
-    unitree_legged_msgs::HighState ros;
+    unitree_legged_base_controller::HighState ros;
     ros.levelFlag = lcm.levelFlag;
     ros.commVersion = lcm.commVersion;
     ros.robotID = lcm.robotID;
@@ -247,8 +247,8 @@ unitree_legged_msgs::HighState ToRos(UNITREE_LEGGED_SDK::HighState& lcm)
     return ros;
 }
 
-unitree_legged_msgs::HighState ToRos(aliengo::HighState& lcm){
-    unitree_legged_msgs::HighState ros;
+unitree_legged_base_controller::HighState ToRos(aliengo::HighState& lcm){
+    unitree_legged_base_controller::HighState ros;
     ros.levelFlag = lcm.levelFlag;
     ros.commVersion = 0;
     ros.robotID = 0;
@@ -282,7 +282,7 @@ unitree_legged_msgs::HighState ToRos(aliengo::HighState& lcm){
     return ros;
 }
 
-UNITREE_LEGGED_SDK::HighCmd ToLcm(unitree_legged_msgs::HighCmd& ros, UNITREE_LEGGED_SDK::HighCmd lcmType)
+UNITREE_LEGGED_SDK::HighCmd ToLcm(unitree_legged_base_controller::HighCmd& ros, UNITREE_LEGGED_SDK::HighCmd lcmType)
 {
     UNITREE_LEGGED_SDK::HighCmd lcm;
     lcm.levelFlag = ros.levelFlag;
@@ -313,7 +313,7 @@ UNITREE_LEGGED_SDK::HighCmd ToLcm(unitree_legged_msgs::HighCmd& ros, UNITREE_LEG
     return lcm;
 }
 
-aliengo::HighCmd ToLcm(unitree_legged_msgs::HighCmd& ros, aliengo::HighCmd lcmType){
+aliengo::HighCmd ToLcm(unitree_legged_base_controller::HighCmd& ros, aliengo::HighCmd lcmType){
     aliengo::HighCmd lcm;
     lcm.levelFlag = ros.levelFlag;
     lcm.mode = ros.mode;
